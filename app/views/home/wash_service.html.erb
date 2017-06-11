@@ -1,0 +1,21 @@
+<h5><%= link_to "Back", root_path %></h5>
+
+<h2>Transaction Info</h2>
+<div class="col-md-12">
+  <h4><%= "Vehicle type: #{@vehicle.vehicle_type}" %></h4>
+  <h4><%= "Plate# #{@vehicle.plate_number}" %></h4>
+  <h4><%= "Visits: #{@vehicle.visit_count}" %></h4>
+</div>
+
+<% @transactions.each do |transaction| %>
+  <div>
+    <%= transaction.created_at.strftime("%b %e, %l:%M %p") %>
+    <h4>
+      <em><%= number_to_currency(transaction.total_price) %></em>
+    </h4>
+  </div>
+<% end %>
+
+<h3>
+  <%= "Total Sales: #{number_to_currency(@transactions.pluck(:total_price).sum)}" %>
+</h3>

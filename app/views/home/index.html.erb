@@ -1,2 +1,35 @@
 <h1>Car Wash</h1>
+<% flash.each do |key, value| %>
+  <div class="alert alert-danger" role="alert"><%= value %></div>
+<% end %>
+
+
+  <%= form_tag wash_service_path, method: 'post' do %>
+    <div class="form-group col-md-12">
+      <%= radio_button_tag(:vehicle_type, "car") %>
+      <%= label_tag(:car, "Car ($5.00)") %>
+    </div>
+    <div class="form-group col-md-12">
+      <%= radio_button_tag(:vehicle_type, "truck") %>
+      <%= label_tag(:truck, "Truck ($10.00)") %>
+
+      <div class="form-group col-md-12">
+        <%= check_box_tag(:mud_in_bed?) %>
+        <%= label_tag(:mud_in_bed?, "Is there mud in truck bed?") %>
+      </div>
+      <div class="form-group col-md-12">
+        <%= check_box_tag(:bed_is_down?) %>
+        <%= label_tag(:bed_is_down?, "Is the truck bed down?") %>
+      </div>
+    </div>
+    <div class="form-group col-md-12">
+      <%= label_tag(:plate_number, "Plate Number") %>
+      <%= text_field_tag(:plate_number, nil, placeholder: "Enter Plate Number") %>
+    </div>
+    <div class="form-group col-md-12">
+      <%= submit_tag "submit" %>
+    </div>
+  <% end %>
+
+
 
