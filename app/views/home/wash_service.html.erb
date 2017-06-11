@@ -2,16 +2,17 @@
 
 <h2>Transaction Info</h2>
 <div class="col-md-12">
-  <h4><%= "Vehicle type: #{@vehicle.vehicle_type}" %></h4>
-  <h4><%= "Plate# #{@vehicle.plate_number}" %></h4>
-  <h4><%= "Visits: #{@vehicle.visit_count}" %></h4>
+  <h5><%= "Vehicle type: #{@vehicle.vehicle_type}" %></h5>
+  <h5><%= "Plate# #{@vehicle.plate_number}" %></h5>
+  <h5><%= "Visits: #{@vehicle.visit_count}" %></h5>
 </div>
 
 <% @transactions.each do |transaction| %>
   <div>
-    <%= transaction.created_at.strftime("%b %e, %l:%M %p") %>
     <h4>
-      <em><%= number_to_currency(transaction.total_price) %></em>
+      <em><%= local_time(transaction.created_at, '%B %e, %Y %l:%M%P') %></em>
+      <%= "________" %>
+      <%= number_to_currency(transaction.total_price) %>
     </h4>
   </div>
 <% end %>
